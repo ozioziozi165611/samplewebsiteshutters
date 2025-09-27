@@ -134,7 +134,7 @@ export default function ContactForm() {
                   disabled={isSubmitting}
                   data-testid="button-submit-contact"
                 >
-                  {isSubmitting ? 'Sending...' : 'Request Free Quote'}
+                  {isSubmitting ? 'Sending Quote Request...' : 'Request Free Quote'}
                 </Button>
               </form>
             </CardContent>

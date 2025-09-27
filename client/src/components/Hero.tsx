@@ -70,7 +70,10 @@ export default function Hero() {
               size="lg" 
               className="bg-white/90 text-black hover:bg-white border-2 border-white/20 backdrop-blur-sm"
               data-testid="button-get-quote"
-              onClick={() => console.log('Get Quote clicked')}
+              onClick={() => {
+                console.log('Get Quote clicked')
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+              }}
             >
               Get Free Quote
             </Button>
@@ -79,7 +82,10 @@ export default function Hero() {
               size="lg" 
               className="text-white border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm"
               data-testid="button-view-gallery"
-              onClick={() => console.log('View Gallery clicked')}
+              onClick={() => {
+                console.log('View Gallery clicked')
+                document.querySelector('#gallery')?.scrollIntoView({ behavior: 'smooth' })
+              }}
             >
               View Gallery
             </Button>

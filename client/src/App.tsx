@@ -18,19 +18,29 @@ function App() {
           <Navigation />
           
           {/* Hero Section */}
-          <Hero />
+          <section id="hero">
+            <Hero />
+          </section>
           
           {/* Editorial Design Showcase */}
-          <EditorialShowcase />
+          <section id="showcase">
+            <EditorialShowcase />
+          </section>
           
           {/* Testimonials & Social Proof */}
-          <TestimonialsSection />
+          <section id="testimonials">
+            <TestimonialsSection />
+          </section>
           
           {/* Transformation Gallery */}
-          <GalleryShowcase />
+          <section id="gallery">
+            <GalleryShowcase />
+          </section>
           
           {/* Contact Form */}
-          <ContactForm />
+          <section id="contact">
+            <ContactForm />
+          </section>
           
           {/* Sticky Quote Bar */}
           <StickyQuoteBar />

@@ -1,36 +1,50 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isDark, setIsDark] = useState(false)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
     console.log('Mobile menu toggled')
   }
 
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
-    console.log('Theme toggled')
-  }
-
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Products', href: '#products' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '#home', section: 'hero' },
+    { name: 'Showcase', href: '#showcase', section: 'showcase' },
+    { name: 'Gallery', href: '#gallery', section: 'gallery' },
+    { name: 'Testimonials', href: '#testimonials', section: 'testimonials' },
+    { name: 'Contact', href: '#contact', section: 'contact' }
   ]
+
+  const handleNavClick = (item: typeof navItems[0]) => {
+    console.log(`${item.name} nav clicked`)
+    // Smooth scroll to section
+    const element = document.querySelector(`#${item.section}`)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsOpen(false) // Close mobile menu
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-background/90 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <svg 
+                viewBox="0 0 24 24" 
+                className="w-6 h-6 text-primary-foreground" 
+                fill="currentColor"
+                data-testid="logo-icon"
+              >
+                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+                <path d="M1 4h22v16H1V4zm2 2v12h18V6H3z"/>
+              </svg>
+            </div>
             <h1 className="text-2xl font-bold text-primary">Elite Shutters</h1>
           </div>
 
@@ -38,47 +52,33 @@ export default function Navigation() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline gap-8">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
                   className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover-elevate"
                   data-testid={`link-nav-${item.name.toLowerCase()}`}
-                  onClick={() => console.log(`${item.name} nav clicked`)}
+                  onClick={() => handleNavClick(item)}
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
             </div>
           </div>
 
-          {/* Theme Toggle & CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              data-testid="button-theme-toggle"
-            >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
+          {/* CTA */}
+          <div className="hidden md:flex items-center">
             <Button 
               data-testid="button-nav-quote"
-              onClick={() => console.log('Nav quote clicked')}
+              onClick={() => {
+                console.log('Nav quote clicked')
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+              }}
             >
               Free Consultation
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              data-testid="button-mobile-theme"
-            >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -96,24 +96,24 @@ export default function Navigation() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 bg-white dark:bg-background border-t border-border">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors hover-elevate"
+                className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors hover-elevate w-full text-left"
                 data-testid={`link-mobile-${item.name.toLowerCase()}`}
-                onClick={() => {
-                  console.log(`Mobile ${item.name} clicked`)
-                  setIsOpen(false)
-                }}
+                onClick={() => handleNavClick(item)}
               >
                 {item.name}
-              </a>
+              </button>
             ))}
             <div className="px-3 pt-4">
               <Button 
                 className="w-full"
                 data-testid="button-mobile-quote"
-                onClick={() => console.log('Mobile quote clicked')}
+                onClick={() => {
+                  console.log('Mobile quote clicked')
+                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                  setIsOpen(false)
+                }}
               >
                 Free Consultation
               </Button>
