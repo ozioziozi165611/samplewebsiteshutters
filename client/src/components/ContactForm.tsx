@@ -49,7 +49,7 @@ export default function ContactForm() {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">Get Your Free Consultation</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to transform your home? Contact us today for a personalized quote and expert advice.
+            Ready to transform your Australian home? Contact us today for a personalised quote and expert advice from our local team.
           </p>
         </div>
 
@@ -112,6 +112,7 @@ export default function ContactForm() {
                       <SelectItem value="venetian-blinds">Venetian Blinds</SelectItem>
                       <SelectItem value="custom-solutions">Custom Solutions</SelectItem>
                       <SelectItem value="consultation">General Consultation</SelectItem>
+                      <SelectItem value="commercial">Commercial Projects</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -149,9 +150,9 @@ export default function ContactForm() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Visit Our Showroom</h3>
                     <p className="text-muted-foreground">
-                      123 Design Center Boulevard<br />
-                      Suite 456<br />
-                      City, State 12345
+                      123 Collins Street<br />
+                      Melbourne VIC 3000<br />
+                      Australia
                     </p>
                   </div>
                 </div>
@@ -165,8 +166,8 @@ export default function ContactForm() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Call Us</h3>
                     <p className="text-muted-foreground">
-                      (555) 123-4567<br />
-                      Free consultation available
+                      (03) 9123 4567<br />
+                      Free consultation Australia-wide
                     </p>
                   </div>
                 </div>
@@ -180,8 +181,8 @@ export default function ContactForm() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Email Us</h3>
                     <p className="text-muted-foreground">
-                      info@eliteshutters.com<br />
-                      We respond within 24 hours
+                      info@eliteshutters.com.au<br />
+                      We respond within 24 hours across Australia
                     </p>
                   </div>
                 </div>

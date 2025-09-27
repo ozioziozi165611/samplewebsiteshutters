@@ -8,27 +8,27 @@ import { Button } from '@/components/ui/button'
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Chen",
-    location: "Pacific Heights, SF",
+    name: "Sarah Mitchell",
+    location: "Toorak, Melbourne",
     rating: 5,
-    text: "The plantation shutters completely transformed our Victorian home. The craftsmanship is extraordinary, and the attention to detail exceeded our expectations. Worth every penny.",
+    text: "The plantation shutters completely transformed our heritage home in Melbourne. The craftsmanship is extraordinary, and the attention to detail exceeded our expectations. Worth every dollar!",
     project: "Full Home Plantation Shutters"
   },
   {
     id: 2,
-    name: "Michael Rodriguez",
-    location: "Westwood, LA",
+    name: "Michael O'Connor",
+    location: "Bondi Beach, Sydney",
     rating: 5,
-    text: "Professional from start to finish. The design consultation was thorough, installation was flawless, and the motorized blinds work perfectly with our smart home system.",
-    project: "Motorized Roller Blinds"
+    text: "Absolutely brilliant service from start to finish. The design consultation was thorough, installation was flawless, and the motorised blinds work perfectly with our smart home setup.",
+    project: "Motorised Roller Blinds"
   },
   {
     id: 3,
-    name: "Jennifer Walsh",
-    location: "Belmont, CA",
+    name: "Jenny Williams",
+    location: "South Yarra, Melbourne",
     rating: 5,
-    text: "We've worked with several window treatment companies, but Elite Shutters stands apart. The quality is unmatched, and their service feels truly boutique.",
-    project: "Custom Wood Blinds"
+    text: "We've worked with several window treatment companies across Australia, but Elite Shutters is simply the best. The quality is unmatched, and their service feels truly premium.",
+    project: "Custom Timber Blinds"
   }
 ]
 
@@ -42,11 +42,11 @@ const awards = [
 export default function TestimonialsSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
-  // Auto-rotate testimonials
+  // Auto-rotate testimonials with smooth cinematic timing
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
+    }, 6000) // Slower for better reading experience
 
     return () => clearInterval(timer)
   }, [])

@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Play, Pause } from 'lucide-react'
 import heroImage1 from '@assets/generated_images/Modern_room_with_plantation_shutters_c4ad6427.png'
 import heroImage2 from '@assets/generated_images/Bedroom_with_wooden_blinds_d0fe520e.png'
 import heroImage3 from '@assets/generated_images/Kitchen_with_roller_blinds_935f3f77.png'
@@ -36,30 +37,84 @@ const showcaseItems = [
 ]
 
 export default function EditorialShowcase() {
+  const [currentShowcase, setCurrentShowcase] = useState(0)
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
+
+  // Cinematic auto-scroll through showcases
+  useEffect(() => {
+    if (!isAutoScrolling) return
+
+    const timer = setInterval(() => {
+      setCurrentShowcase((prev) => (prev + 1) % showcaseItems.length)
+    }, 8000) // 8 seconds per showcase for cinematic flow
+
+    return () => clearInterval(timer)
+  }, [isAutoScrolling])
+
   return (
     <section className="py-24 bg-background">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header with Auto-Scroll Control */}
         <div className="text-center mb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm tracking-wider uppercase">
               Design Showcase
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-tight">
-              Crafted for Life
+              Crafted for Australian Living
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
               Each collection represents years of refinement, bringing together the finest materials, 
-              precision engineering, and timeless design principles.
+              precision engineering, and timeless design principles for the Australian lifestyle.
             </p>
+            
+            {/* Cinematic Control */}
+            <div className="flex items-center justify-center gap-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsAutoScrolling(!isAutoScrolling)}
+                className="flex items-center gap-2"
+                data-testid="button-toggle-auto-scroll"
+              >
+                {isAutoScrolling ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isAutoScrolling ? 'Pause' : 'Play'} Showcase
+              </Button>
+              
+              {/* Progress indicators */}
+              <div className="flex gap-2">
+                {showcaseItems.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentShowcase(index)
+                      setIsAutoScrolling(false)
+                    }}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentShowcase ? 'bg-primary' : 'bg-muted-foreground/30'
+                    }`}
+                    data-testid={`button-showcase-${index}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Editorial Panels */}
-        <div className="space-y-32">
-          {showcaseItems.map((item) => (
-            <div key={item.id} className="px-4 sm:px-6 lg:px-8">
-              <div className={`grid lg:grid-cols-2 gap-16 items-center ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
+        {/* Editorial Panels - Cinematic Display */}
+        <div className="relative min-h-[600px] overflow-hidden">
+          {showcaseItems.map((item, index) => (
+            <div 
+              key={item.id} 
+              className={`absolute inset-0 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-in-out transform ${
+                index === currentShowcase 
+                  ? 'opacity-100 translate-x-0' 
+                  : index < currentShowcase 
+                    ? 'opacity-0 -translate-x-full' 
+                    : 'opacity-0 translate-x-full'
+              }`}
+            >
+              <div className={`grid lg:grid-cols-2 gap-16 items-center h-full ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
                 {/* Content */}
                 <div className={`space-y-8 ${item.reverse ? 'lg:col-start-2' : ''}`}>
                   <div>

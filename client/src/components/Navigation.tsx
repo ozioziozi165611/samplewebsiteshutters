@@ -45,7 +45,7 @@ export default function Navigation() {
                 <path d="M1 4h22v16H1V4zm2 2v12h18V6H3z"/>
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-primary">Elite Shutters</h1>
+            <h1 className="text-2xl font-bold text-primary">Elite Shutters Australia</h1>
           </div>
 
           {/* Desktop Navigation */}

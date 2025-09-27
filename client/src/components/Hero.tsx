@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import heroImage1 from '@assets/generated_images/Modern_room_with_plantation_shutters_c4ad6427.png'
@@ -9,22 +9,31 @@ const heroImages = [
   {
     src: heroImage1,
     title: "Premium Plantation Shutters",
-    subtitle: "Transform your living spaces with elegant, custom-fitted shutters"
+    subtitle: "Transform your Aussie home with elegant, custom-fitted shutters"
   },
   {
     src: heroImage2,
-    title: "Custom Wooden Blinds", 
+    title: "Custom Timber Blinds", 
     subtitle: "Natural warmth and perfect light control for every room"
   },
   {
     src: heroImage3,
-    title: "Professional Installation",
-    subtitle: "Expert craftsmanship ensuring perfect fit and finish"
+    title: "Expert Installation",
+    subtitle: "Professional craftsmanship across Australia - perfect fit guaranteed"
   }
 ]
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
+
+  // Auto-scroll functionality for cinematic experience
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }, 4000) // Change slide every 4 seconds for cinematic flow
+
+    return () => clearInterval(timer)
+  }, [])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroImages.length)
@@ -42,14 +51,14 @@ export default function Hero() {
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          className={`absolute inset-0 transition-all duration-2000 ease-in-out transform ${
+            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
         >
           <img
             src={image.src}
             alt={image.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-4000 ease-out"
           />
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />

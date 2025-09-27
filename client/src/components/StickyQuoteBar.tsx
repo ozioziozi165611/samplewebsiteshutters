@@ -38,7 +38,7 @@ export default function StickyQuoteBar() {
                 data-testid="button-sticky-phone"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">Call </span>(555) 123-4567
+                <span className="hidden sm:inline">Call </span>(03) 9123 4567
               </Button>
               <Button
                 variant="outline"
