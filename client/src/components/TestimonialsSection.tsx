@@ -76,9 +76,9 @@ export default function TestimonialsSection() {
 
         {/* Testimonials Carousel */}
         <div className="relative max-w-4xl mx-auto mb-16">
-          <Card className="hover-elevate">
+          <Card className="hover-elevate bg-card/50 backdrop-blur-sm border border-accent/20">
             <CardContent className="p-12">
-              <div className="text-center">
+              <div className="text-center transition-all duration-500 ease-out">
                 {/* Stars */}
                 <div className="flex justify-center mb-6">
                   {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* Testimonial Text */}
-                <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed mb-8 italic">
+                <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed mb-8 italic transform transition-all duration-300 ease-out">
                   "{testimonials[currentTestimonial].text}"
                 </blockquote>
 

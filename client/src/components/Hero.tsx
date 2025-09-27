@@ -51,17 +51,21 @@ export default function Hero() {
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-all duration-2000 ease-in-out transform ${
-            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          className={`absolute inset-0 transition-all duration-1000 ease-out transform ${
+            index === currentSlide 
+              ? 'opacity-100 translate-x-0 scale-100' 
+              : index < currentSlide 
+                ? 'opacity-0 -translate-x-full scale-105' 
+                : 'opacity-0 translate-x-full scale-105'
           }`}
         >
           <img
             src={image.src}
             alt={image.title}
-            className="w-full h-full object-cover transition-transform duration-4000 ease-out"
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out"
           />
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         </div>
       ))}
 

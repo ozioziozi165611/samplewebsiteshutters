@@ -29,12 +29,12 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-background/90 backdrop-blur-sm border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-accent/20 shadow-lg shadow-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-105">
               <svg 
                 viewBox="0 0 24 24" 
                 className="w-6 h-6 text-primary-foreground" 
@@ -94,7 +94,7 @@ export default function Navigation() {
       {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 bg-white dark:bg-background border-t border-border">
+          <div className="px-2 pt-2 pb-3 bg-background/98 backdrop-blur-lg border-t border-accent/20">
             {navItems.map((item) => (
               <button
                 key={item.name}

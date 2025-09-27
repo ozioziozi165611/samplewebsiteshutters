@@ -106,12 +106,12 @@ export default function EditorialShowcase() {
           {showcaseItems.map((item, index) => (
             <div 
               key={item.id} 
-              className={`absolute inset-0 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-in-out transform ${
+              className={`absolute inset-0 px-4 sm:px-6 lg:px-8 transition-all duration-800 ease-out transform ${
                 index === currentShowcase 
-                  ? 'opacity-100 translate-x-0' 
+                  ? 'opacity-100 translate-x-0 scale-100' 
                   : index < currentShowcase 
-                    ? 'opacity-0 -translate-x-full' 
-                    : 'opacity-0 translate-x-full'
+                    ? 'opacity-0 -translate-x-full scale-95' 
+                    : 'opacity-0 translate-x-full scale-95'
               }`}
             >
               <div className={`grid lg:grid-cols-2 gap-16 items-center h-full ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
@@ -168,9 +168,9 @@ export default function EditorialShowcase() {
                     <img
                       src={item.image}
                       alt={item.headline}
-                      className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
                   </div>
                 </div>
               </div>
