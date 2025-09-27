@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import beforeAfterImage from '@assets/generated_images/Before_after_shutter_installation_94e72c5d.png'
+import defaultBeforeImage from '@assets/stock_images/plain_room_with_larg_bfc4eaf3.jpg'
+import defaultAfterImage from '@assets/stock_images/elegant_room_with_be_a1961cb9.jpg'
 
 interface BeforeAfterProps {
   title: string
@@ -12,8 +13,8 @@ interface BeforeAfterProps {
 export default function BeforeAfter({ 
   title, 
   description, 
-  beforeImage = beforeAfterImage, 
-  afterImage = beforeAfterImage 
+  beforeImage: beforeImageProp = defaultBeforeImage, 
+  afterImage: afterImageProp = defaultAfterImage 
 }: BeforeAfterProps) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
@@ -78,11 +79,11 @@ export default function BeforeAfter({
           {/* Before Image */}
           <div className="absolute inset-0">
             <img
-              src={beforeImage}
+              src={beforeImageProp}
               alt="Before installation"
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <div className="absolute top-4 left-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium">
               Before
             </div>
           </div>
@@ -93,28 +94,30 @@ export default function BeforeAfter({
             style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
           >
             <img
-              src={afterImage}
+              src={afterImageProp}
               alt="After installation"
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
+            <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg">
               After
             </div>
           </div>
 
           {/* Slider Line */}
           <div 
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10 cursor-ew-resize"
+            className="absolute top-0 bottom-0 w-1 bg-primary shadow-xl z-10 cursor-ew-resize"
             style={{ left: `${sliderPosition}%` }}
           >
             {/* Slider Handle */}
             <div 
-              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center cursor-ew-resize hover-elevate"
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-primary rounded-full shadow-xl flex items-center justify-center cursor-ew-resize hover-elevate active-elevate-2 transition-all duration-200"
               onMouseDown={handleMouseDown}
               onTouchStart={handleMouseDown}
               data-testid="before-after-slider"
             >
-              <div className="w-4 h-4 bg-primary rounded-full" />
+              <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+              <div className="w-0.5 h-6 bg-primary-foreground mx-1" />
+              <div className="w-2 h-2 bg-primary-foreground rounded-full" />
             </div>
           </div>
         </div>
