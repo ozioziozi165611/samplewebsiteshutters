@@ -62,22 +62,22 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-24 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 sm:py-16 lg:py-24 bg-muted/30">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm tracking-wider uppercase">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <Badge variant="secondary" className="mb-3 sm:mb-4 px-3 py-1.5 text-xs sm:text-sm tracking-wider uppercase">
             Client Stories
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 tracking-tight">
             Trusted by Discerning Homeowners
           </h2>
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto mb-16">
+        <div className="relative max-w-4xl mx-auto mb-8 sm:mb-12 lg:mb-16">
           <Card className="hover-elevate bg-card/50 backdrop-blur-sm border border-accent/20">
-            <CardContent className="p-12">
+            <CardContent className="p-6 sm:p-8 lg:p-12">
               <div className="text-center transition-all duration-500 ease-out">
                 {/* Stars */}
                 <div className="flex justify-center mb-6">
@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* Testimonial Text */}
-                <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed mb-8 italic transform transition-all duration-300 ease-out">
+                <blockquote className="text-base sm:text-lg lg:text-xl xl:text-2xl text-foreground font-medium leading-relaxed mb-6 sm:mb-8 italic transform transition-all duration-300 ease-out">
                   "{testimonials[currentTestimonial].text}"
                 </blockquote>
 

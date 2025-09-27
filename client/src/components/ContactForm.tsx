@@ -44,11 +44,11 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="py-16 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Get Your Free Consultation</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+    <section className="py-12 sm:py-14 lg:py-16 bg-muted/30">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">Get Your Free Consultation</h2>
+          <p className="text-sm sm:text-base lg:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             Ready to transform your Australian home? Contact us today for a personalised quote and expert advice from our local team.
           </p>
         </div>

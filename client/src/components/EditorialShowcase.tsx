@@ -52,18 +52,18 @@ export default function EditorialShowcase() {
   }, [isAutoScrolling])
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 sm:py-16 lg:py-24 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header with Auto-Scroll Control */}
-        <div className="text-center mb-20 px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16 lg:mb-20 px-3 sm:px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm tracking-wider uppercase">
+            <Badge variant="secondary" className="mb-3 sm:mb-4 px-3 py-1.5 text-xs sm:text-sm tracking-wider uppercase">
               Design Showcase
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 tracking-tight leading-tight">
               Crafted for Australian Living
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+            <p className="text-sm sm:text-base lg:text-xl text-muted-foreground leading-relaxed mb-4 sm:mb-6 px-2">
               Each collection represents years of refinement, bringing together the finest materials, 
               precision engineering, and timeless design principles for the Australian lifestyle.
             </p>
@@ -102,11 +102,11 @@ export default function EditorialShowcase() {
         </div>
 
         {/* Editorial Panels - Cinematic Display */}
-        <div className="relative min-h-[600px] overflow-hidden">
+        <div className="relative min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] overflow-hidden">
           {showcaseItems.map((item, index) => (
             <div 
               key={item.id} 
-              className={`absolute inset-0 px-4 sm:px-6 lg:px-8 transition-all duration-800 ease-out transform ${
+              className={`absolute inset-0 px-3 sm:px-4 lg:px-8 transition-all duration-800 ease-out transform ${
                 index === currentShowcase 
                   ? 'opacity-100 translate-x-0 scale-100' 
                   : index < currentShowcase 
@@ -114,17 +114,17 @@ export default function EditorialShowcase() {
                     : 'opacity-0 translate-x-full scale-95'
               }`}
             >
-              <div className={`grid lg:grid-cols-2 gap-16 items-center h-full ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
+              <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center h-full ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
                 {/* Content */}
-                <div className={`space-y-8 ${item.reverse ? 'lg:col-start-2' : ''}`}>
+                <div className={`space-y-4 sm:space-y-6 lg:space-y-8 ${item.reverse ? 'lg:col-start-2' : ''}`}>
                   <div>
-                    <Badge variant="outline" className="mb-4 text-xs tracking-widest uppercase font-medium">
+                    <Badge variant="outline" className="mb-2 sm:mb-3 lg:mb-4 text-xs tracking-widest uppercase font-medium">
                       {item.overline}
                     </Badge>
-                    <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight leading-tight">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 tracking-tight leading-tight">
                       {item.headline}
                     </h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6 lg:mb-8">
                       {item.description}
                     </p>
                   </div>
@@ -168,7 +168,7 @@ export default function EditorialShowcase() {
                     <img
                       src={item.image}
                       alt={item.headline}
-                      className="w-full h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
+                      className="w-full h-[300px] sm:h-[400px] lg:h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
                   </div>

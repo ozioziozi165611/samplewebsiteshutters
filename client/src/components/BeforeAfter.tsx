@@ -66,14 +66,14 @@ export default function BeforeAfter({
 
   return (
     <Card className="overflow-hidden hover-elevate">
-      <CardHeader>
-        <CardTitle className="text-2xl text-center">{title}</CardTitle>
-        <p className="text-muted-foreground text-center">{description}</p>
+      <CardHeader className="p-3 sm:p-4 lg:p-6">
+        <CardTitle className="text-lg sm:text-xl lg:text-2xl text-center">{title}</CardTitle>
+        <p className="text-sm sm:text-base text-muted-foreground text-center">{description}</p>
       </CardHeader>
       <CardContent className="p-0">
         <div 
           ref={containerRef}
-          className="relative h-96 overflow-hidden cursor-ew-resize select-none"
+          className="relative h-64 sm:h-80 lg:h-96 overflow-hidden cursor-ew-resize select-none"
           data-testid="before-after-container"
         >
           {/* Before Image */}
@@ -83,7 +83,7 @@ export default function BeforeAfter({
               alt="Before installation"
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 left-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/80 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium">
               Before
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function BeforeAfter({
               alt="After installation"
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+            <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-primary text-primary-foreground px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg">
               After
             </div>
           </div>

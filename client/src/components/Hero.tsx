@@ -71,17 +71,17 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="max-w-4xl mx-auto px-8 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             {heroImages[currentSlide].title}
           </h1>
-          <p className="text-xl md:text-2xl mb-8 font-medium opacity-90">
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 font-medium opacity-90 px-2">
             {heroImages[currentSlide].subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
             <Button 
               size="lg" 
-              className="bg-white/90 text-black hover:bg-white border-2 border-white/20 backdrop-blur-sm"
+              className="bg-white/90 text-black hover:bg-white border-2 border-white/20 backdrop-blur-sm text-sm sm:text-base px-6 sm:px-8"
               data-testid="button-get-quote"
               onClick={() => {
                 console.log('Get Quote clicked')
@@ -93,7 +93,7 @@ export default function Hero() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-white border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+              className="text-white border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-sm sm:text-base px-6 sm:px-8"
               data-testid="button-view-gallery"
               onClick={() => {
                 console.log('View Gallery clicked')
