@@ -4,9 +4,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import ProductGallery from "@/components/ProductGallery";
+import EditorialShowcase from "@/components/EditorialShowcase";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import GalleryShowcase from "@/components/GalleryShowcase";
 import ContactForm from "@/components/ContactForm";
+import StickyQuoteBar from "@/components/StickyQuoteBar";
 
 function App() {
   return (
@@ -18,14 +20,20 @@ function App() {
           {/* Hero Section */}
           <Hero />
           
-          {/* Product Gallery Section */}
-          <ProductGallery />
+          {/* Editorial Design Showcase */}
+          <EditorialShowcase />
+          
+          {/* Testimonials & Social Proof */}
+          <TestimonialsSection />
           
           {/* Transformation Gallery */}
           <GalleryShowcase />
           
           {/* Contact Form */}
           <ContactForm />
+          
+          {/* Sticky Quote Bar */}
+          <StickyQuoteBar />
           
           {/* Footer */}
           <footer className="bg-primary text-primary-foreground py-12">
