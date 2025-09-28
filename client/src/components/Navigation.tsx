@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'wouter'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [location] = useLocation()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -11,19 +13,27 @@ export default function Navigation() {
   }
 
   const navItems = [
-    { name: 'Home', href: '#home', section: 'hero' },
-    { name: 'Showcase', href: '#showcase', section: 'showcase' },
-    { name: 'Gallery', href: '#gallery', section: 'gallery' },
-    { name: 'Testimonials', href: '#testimonials', section: 'testimonials' },
-    { name: 'Contact', href: '#contact', section: 'contact' }
+    { name: 'Home', href: '/', type: 'route' },
+    { name: 'Projects', href: '/projects', type: 'route' },
+    { name: 'Showcase', href: '/#showcase', section: 'showcase', type: 'scroll' },
+    { name: 'Gallery', href: '/#gallery', section: 'gallery', type: 'scroll' },
+    { name: 'Contact', href: '/#contact', section: 'contact', type: 'scroll' }
   ]
 
   const handleNavClick = (item: typeof navItems[0]) => {
     console.log(`${item.name} nav clicked`)
-    // Smooth scroll to section
-    const element = document.querySelector(`#${item.section}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    
+    if (item.type === 'scroll' && item.section) {
+      // If we're not on the home page, go to home first
+      if (location !== '/') {
+        window.location.href = item.href
+        return
+      }
+      // Smooth scroll to section
+      const element = document.querySelector(`#${item.section}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
     setIsOpen(false) // Close mobile menu
   }
@@ -52,14 +62,25 @@ export default function Navigation() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline gap-8">
               {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover-elevate"
-                  data-testid={`link-nav-${item.name.toLowerCase()}`}
-                  onClick={() => handleNavClick(item)}
-                >
-                  {item.name}
-                </button>
+                item.type === 'route' ? (
+                  <Link key={item.name} href={item.href}>
+                    <button
+                      className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover-elevate"
+                      data-testid={`link-nav-${item.name.toLowerCase()}`}
+                    >
+                      {item.name}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    key={item.name}
+                    className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover-elevate"
+                    data-testid={`link-nav-${item.name.toLowerCase()}`}
+                    onClick={() => handleNavClick(item)}
+                  >
+                    {item.name}
+                  </button>
+                )
               ))}
             </div>
           </div>
@@ -70,7 +91,12 @@ export default function Navigation() {
               data-testid="button-nav-quote"
               onClick={() => {
                 console.log('Nav quote clicked')
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                // Navigate to contact section on home page
+                if (location !== '/') {
+                  window.location.href = '/#contact'
+                } else {
+                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                }
               }}
             >
               Free Consultation
@@ -96,14 +122,26 @@ export default function Navigation() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 bg-background/98 backdrop-blur-lg border-t border-accent/20">
             {navItems.map((item) => (
-              <button
-                key={item.name}
-                className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors hover-elevate w-full text-left"
-                data-testid={`link-mobile-${item.name.toLowerCase()}`}
-                onClick={() => handleNavClick(item)}
-              >
-                {item.name}
-              </button>
+              item.type === 'route' ? (
+                <Link key={item.name} href={item.href}>
+                  <button
+                    className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors hover-elevate w-full text-left"
+                    data-testid={`link-mobile-${item.name.toLowerCase()}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  key={item.name}
+                  className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors hover-elevate w-full text-left"
+                  data-testid={`link-mobile-${item.name.toLowerCase()}`}
+                  onClick={() => handleNavClick(item)}
+                >
+                  {item.name}
+                </button>
+              )
             ))}
             <div className="px-3 pt-4">
               <Button 
@@ -111,7 +149,12 @@ export default function Navigation() {
                 data-testid="button-mobile-quote"
                 onClick={() => {
                   console.log('Mobile quote clicked')
-                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                  // Navigate to contact section on home page
+                  if (location !== '/') {
+                    window.location.href = '/#contact'
+                  } else {
+                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                  }
                   setIsOpen(false)
                 }}
               >
