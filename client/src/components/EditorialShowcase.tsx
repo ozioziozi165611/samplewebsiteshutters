@@ -1,182 +1,137 @@
-import { useState, useEffect } from 'react'
+import { Link } from 'wouter'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Play, Pause } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import { ArrowRight } from 'lucide-react'
 import heroImage1 from '@assets/generated_images/Modern_room_with_plantation_shutters_c4ad6427.png'
 import heroImage2 from '@assets/generated_images/Bedroom_with_wooden_blinds_d0fe520e.png'
 import heroImage3 from '@assets/generated_images/Kitchen_with_roller_blinds_935f3f77.png'
 
-const showcaseItems = [
+const categoryItems = [
   {
     id: 1,
+    category: "Shutters",
     overline: "PLANTATION ELEGANCE",
     headline: "Timeless Sophistication",
-    description: "Hand-crafted plantation shutters that seamlessly blend traditional craftsmanship with contemporary living. Each piece is meticulously designed to enhance your home's architectural character while providing unparalleled light control.",
+    description: "Hand-crafted plantation shutters that seamlessly blend traditional craftsmanship with contemporary living. Perfect light control with architectural elegance.",
     image: heroImage1,
-    swatches: ["Classic White", "Natural Wood", "Espresso"],
-    reverse: false
+    features: ["Custom Fit", "Premium Materials", "Lifetime Warranty"]
   },
   {
     id: 2,
+    category: "Venetian",
     overline: "WARM WOOD COLLECTION",
     headline: "Natural Beauty, Refined",
-    description: "Premium wooden blinds that bring the warmth of nature indoors. Sustainably sourced hardwood meets precision engineering to create window treatments that age beautifully and perform flawlessly for decades.",
+    description: "Premium wooden venetian blinds that bring warmth and sophistication to any space. Sustainably sourced hardwood meets precision engineering.",
     image: heroImage2,
-    swatches: ["Honey Oak", "Walnut", "Bamboo"],
-    reverse: true
+    features: ["Natural Wood", "Easy Operation", "Multiple Stains"]
   },
   {
     id: 3,
+    category: "Roller",
     overline: "MODERN MINIMALISM",
     headline: "Clean Lines, Perfect Control",
-    description: "Contemporary roller blinds designed for the modern lifestyle. Whisper-quiet motorization, smart home integration, and blackout precision meet sleek aesthetics for the ultimate in form and function.",
+    description: "Contemporary roller blinds designed for the modern lifestyle. Whisper-quiet operation with smart home integration and blackout precision.",
     image: heroImage3,
-    swatches: ["Pure White", "Charcoal", "Linen"],
-    reverse: false
+    features: ["Motorized Options", "Smart Integration", "Blackout Fabrics"]
+  },
+  {
+    id: 4,
+    category: "Blinds",
+    overline: "VERSATILE SOLUTIONS",
+    headline: "Style Meets Function",
+    description: "Our comprehensive range of blinds offers the perfect solution for every room and requirement. From classic to contemporary, find your ideal match.",
+    image: heroImage1,
+    features: ["Wide Selection", "Custom Colors", "Professional Install"]
   }
 ]
 
 export default function EditorialShowcase() {
-  const [currentShowcase, setCurrentShowcase] = useState(0)
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
-
-  // Cinematic auto-scroll through showcases
-  useEffect(() => {
-    if (!isAutoScrolling) return
-
-    const timer = setInterval(() => {
-      setCurrentShowcase((prev) => (prev + 1) % showcaseItems.length)
-    }, 8000) // 8 seconds per showcase for cinematic flow
-
-    return () => clearInterval(timer)
-  }, [isAutoScrolling])
-
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-background">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header with Auto-Scroll Control */}
-        <div className="text-center mb-10 sm:mb-16 lg:mb-20 px-3 sm:px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <Badge variant="secondary" className="mb-3 sm:mb-4 px-3 py-1.5 text-xs sm:text-sm tracking-wider uppercase">
-              Design Showcase
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 tracking-tight leading-tight">
-              Crafted for Australian Living
-            </h2>
-            <p className="text-sm sm:text-base lg:text-xl text-muted-foreground leading-relaxed mb-4 sm:mb-6 px-2">
-              Each collection represents years of refinement, bringing together the finest materials, 
-              precision engineering, and timeless design principles for the Australian lifestyle.
-            </p>
-            
-            {/* Cinematic Control */}
-            <div className="flex items-center justify-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsAutoScrolling(!isAutoScrolling)}
-                className="flex items-center gap-2"
-                data-testid="button-toggle-auto-scroll"
-              >
-                {isAutoScrolling ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                {isAutoScrolling ? 'Pause' : 'Play'} Showcase
-              </Button>
-              
-              {/* Progress indicators */}
-              <div className="flex gap-2">
-                {showcaseItems.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setCurrentShowcase(index)
-                      setIsAutoScrolling(false)
-                    }}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentShowcase ? 'bg-primary' : 'bg-muted-foreground/30'
-                    }`}
-                    data-testid={`button-showcase-${index}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <Badge variant="secondary" className="mb-4 px-3 py-1.5 text-sm tracking-wider uppercase">
+            Design Showcase
+          </Badge>
+          <h2 className="text-4xl font-bold text-foreground mb-6 tracking-tight">
+            Crafted for Australian Living
+          </h2>
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Each collection represents years of refinement, bringing together the finest materials, 
+            precision engineering, and timeless design principles for the Australian lifestyle.
+          </p>
         </div>
 
-        {/* Editorial Panels - Cinematic Display */}
-        <div className="relative min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] overflow-hidden">
-          {showcaseItems.map((item, index) => (
-            <div 
-              key={item.id} 
-              className={`absolute inset-0 px-3 sm:px-4 lg:px-8 transition-all duration-800 ease-out transform ${
-                index === currentShowcase 
-                  ? 'opacity-100 translate-x-0 scale-100' 
-                  : index < currentShowcase 
-                    ? 'opacity-0 -translate-x-full scale-95' 
-                    : 'opacity-0 translate-x-full scale-95'
-              }`}
-            >
-              <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center h-full ${item.reverse ? 'lg:grid-flow-col-dense' : ''}`}>
-                {/* Content */}
-                <div className={`space-y-4 sm:space-y-6 lg:space-y-8 ${item.reverse ? 'lg:col-start-2' : ''}`}>
-                  <div>
-                    <Badge variant="outline" className="mb-2 sm:mb-3 lg:mb-4 text-xs tracking-widest uppercase font-medium">
-                      {item.overline}
-                    </Badge>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 tracking-tight leading-tight">
-                      {item.headline}
-                    </h3>
-                    <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6 lg:mb-8">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Swatches */}
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-medium text-foreground uppercase tracking-wider">
-                      Featured Finishes
-                    </h4>
-                    <div className="flex gap-3">
-                      {item.swatches.map((swatch, index) => (
-                        <Badge 
-                          key={index} 
-                          variant="secondary" 
-                          className="px-3 py-1 text-sm hover-elevate cursor-pointer"
-                          onClick={() => console.log(`${swatch} swatch selected`)}
-                          data-testid={`swatch-${swatch.toLowerCase().replace(/\s+/g, '-')}`}
-                        >
-                          {swatch}
-                        </Badge>
-                      ))}
+        {/* Categories Carousel */}
+        <Carousel className="w-full">
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {categoryItems.map((item) => (
+              <CarouselItem key={item.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <Card className="h-full">
+                  <CardContent className="p-0">
+                    <div className="relative overflow-hidden rounded-t-lg">
+                      <img
+                        src={item.image}
+                        alt={item.headline}
+                        className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <Badge 
+                        variant="secondary" 
+                        className="absolute top-4 left-4"
+                        data-testid={`badge-category-${item.category.toLowerCase()}`}
+                      >
+                        {item.overline}
+                      </Badge>
                     </div>
-                  </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">
+                        {item.headline}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        {item.description}
+                      </p>
+                      
+                      {/* Features */}
+                      <div className="space-y-3 mb-6">
+                        <h4 className="text-sm font-medium text-foreground uppercase tracking-wider">
+                          Key Features
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {item.features.map((feature, index) => (
+                            <Badge 
+                              key={index} 
+                              variant="outline" 
+                              className="text-xs"
+                            >
+                              {feature}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* CTA */}
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="group"
-                    onClick={() => console.log(`View ${item.overline} project`)}
-                    data-testid={`button-view-project-${item.id}`}
-                  >
-                    View Project
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </div>
-
-                {/* Image */}
-                <div className={`${item.reverse ? 'lg:col-start-1' : ''}`}>
-                  <div className="relative group hover-elevate overflow-hidden rounded-lg">
-                    <img
-                      src={item.image}
-                      alt={item.headline}
-                      className="w-full h-[300px] sm:h-[400px] lg:h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                      {/* CTA */}
+                      <Link href={`/projects?category=${item.category}`}>
+                        <Button 
+                          className="w-full group"
+                          data-testid={`button-view-projects-${item.category.toLowerCase()}`}
+                        >
+                          View {item.category} Projects
+                          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
 
         {/* Bottom CTA */}
         <div className="text-center mt-32 px-4 sm:px-6 lg:px-8">
