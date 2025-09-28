@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,17 @@ const categories = ["All", "Shutters", "Blinds", "Roller", "Venetian"] as const;
 
 export default function ProjectsList() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [location] = useLocation();
+
+  // Read category from query parameter and update selected category
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const categoryParam = urlParams.get('category');
+    
+    if (categoryParam && categories.includes(categoryParam as any)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
   
   const { data: allProjects = [], isLoading, error } = useQuery<Project[]>({
     queryKey: ["/api/projects"],
