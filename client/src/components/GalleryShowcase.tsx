@@ -1,4 +1,3 @@
-import BeforeAfter from './BeforeAfter'
 import { Card, CardContent } from '@/components/ui/card'
 import heroImage1 from '@assets/generated_images/Modern_room_with_plantation_shutters_c4ad6427.png'
 import heroImage2 from '@assets/generated_images/Bedroom_with_wooden_blinds_d0fe520e.png'
@@ -40,13 +39,6 @@ export default function GalleryShowcase() {
           </p>
         </div>
 
-        {/* Before/After Comparison */}
-        <div className="mb-16">
-          <BeforeAfter
-            title="Complete Room Makeover"
-            description="Watch this living space transform from ordinary to extraordinary with custom plantation shutters"
-          />
-        </div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
