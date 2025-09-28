@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'wouter'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import heroImage1 from '@assets/generated_images/Modern_room_with_plantation_shutters_c4ad6427.png'
@@ -90,18 +91,17 @@ export default function Hero() {
             >
               Get Free Quote
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="text-white border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-sm sm:text-base px-6 sm:px-8"
-              data-testid="button-view-gallery"
-              onClick={() => {
-                console.log('View Gallery clicked')
-                document.querySelector('#gallery')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              View Gallery
-            </Button>
+            <Link href="/projects">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-white border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-sm sm:text-base px-6 sm:px-8"
+                data-testid="button-view-gallery"
+                onClick={() => console.log('View Gallery clicked')}
+              >
+                View Projects
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

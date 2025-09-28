@@ -1,3 +1,4 @@
+import { Link } from 'wouter'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -94,18 +95,23 @@ export default function ProductCard({
         </div>
 
         <div className="flex gap-3">
-          <Button 
-            variant="outline" 
-            className="flex-1"
-            data-testid={`button-learn-more-${title.toLowerCase().replace(/\s+/g, '-')}`}
-            onClick={() => console.log(`Learn more about ${title}`)}
-          >
-            Learn More
-          </Button>
+          <Link href="/projects" className="flex-1">
+            <Button 
+              variant="outline" 
+              className="w-full"
+              data-testid={`button-learn-more-${title.toLowerCase().replace(/\s+/g, '-')}`}
+              onClick={() => console.log(`Learn more about ${title}`)}
+            >
+              View Projects
+            </Button>
+          </Link>
           <Button 
             className="flex-1"
             data-testid={`button-get-quote-${title.toLowerCase().replace(/\s+/g, '-')}`}
-            onClick={() => console.log(`Get quote for ${title}`)}
+            onClick={() => {
+              console.log(`Get quote for ${title}`)
+              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+            }}
           >
             Get Quote
           </Button>
